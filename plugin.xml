@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
+  id="com.intel.xdk.display"
+  version="0.0.1">
+  <name>Intel XDK Display</name>
+  <description>Intel XDK Display Plugin</description>
+  <license>Apache 2.0</license>
+  <keywords>intel,xdk,display</keywords>
+
+</plugin>
