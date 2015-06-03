@@ -1,11 +1,92 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!--
+Copyright 2015 Intel Corporation
+
+Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file 
+except in compliance with the License. You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software distributed under the 
+License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, 
+either express or implied. See the License for the specific language governing permissions 
+and limitations under the License
+-->
+
 
 <plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
-  id="intel.xdk.display"
-  version="0.0.1">
-  <name>Intel XDK Display</name>
-  <description>Intel XDK Display Plugin</description>
-  <license>Apache 2.0</license>
-  <keywords>intel,xdk,display</keywords>
+    id="intel.xdk.display"
+    version="1.1.1">
+    <name>Intel XDK Display</name>
+    <description>Intel XDK Display Plugin</description>
+    <license>Apache 2.0</license>
+    <keywords>Intel XDK, intel.xdk, file</keywords>
+    <repo>https://github.com/01org/cordova-plugin-intel-xdk-display.git</repo>
+    <issue></issue>
+
+    <js-module src="www/display.js" name="display">
+        <clobbers target="intel.xdk.display" />
+    </js-module>
+
+    <!-- wp8 -->
+    <platform name="wp8">
+        <config-file target="Properties/WMAppManifest.xml" parent="/Deployment/App/Capabilities">
+            <Capability Name="ID_CAP_ISV_CAMERA" />
+        </config-file>
+
+        <config-file target="config.xml" parent="/*">
+            <feature name="IntelXDKDisplay">
+                <param name="wp-package" value="IntelXDKDisplay"/>
+            </feature>
+        </config-file>
+
+       <source-file src="src/wp8/Display.cs" />
+       <source-file src="src/wp8/UI/AugmentedReality.xaml" target-dir="UI" />
+       <source-file src="src/wp8/UI/AugmentedReality.xaml.cs" target-dir="UI" />
+    </platform>
+
+    <!-- windows8 -->
+    <platform name="windows8">
+        <config-file target="package.appxmanifest" parent="/Package/Capabilities">
+            <DeviceCapability Name="webcam" />
+        </config-file>
+
+        <js-module src="src/windows8/displayProxy.js" name="DisplayProxy">
+            <merges target="" />
+        </js-module>
+   </platform>
+
+    <!-- android -->
+    <platform name="android">
+        <config-file target="res/xml/config.xml" parent="/*">
+            <feature name="IntelXDKDisplay">
+                <param name="android-package" value="com.intel.xdk.display.Display"/>
+            </feature>
+        </config-file>
+
+        <config-file target="AndroidManifest.xml" parent="/*">
+            <!--uses-permission android:name="android.permission." /-->
+            <uses-permission android:name="android.permission.CAMERA" />
+            <uses-feature android:name="android.hardware.camera" android:required="false" />
+            <uses-feature android:name="android.hardware.camera.autofocus" android:required="false" />
+        </config-file>
+
+        <source-file src="src/android/Display.java" target-dir="src/com/intel/xdk/display" />
+        <source-file src="src/android/CameraPreview.java" target-dir="src/com/intel/xdk/display" />
+    </platform>
+
+    <!-- iOS -->
+    <platform name="ios">
+
+        <config-file target="config.xml" parent="/*">
+            <feature name="IntelXDKDisplay">
+                <param name="ios-package" value="XDKDisplay" />
+            </feature>
+        </config-file>
+    
+        <header-file src="src/ios/XDKDisplay.h" />
+        <source-file src="src/ios/XDKDisplay.m" />
+    
+    </platform>
 
 </plugin>
