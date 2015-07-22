@@ -16,7 +16,7 @@ and limitations under the License
 
 <plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
     id="intel.xdk.display"
-    version="1.1.1">
+    version="1.2.0">
     <name>Intel XDK Display</name>
     <description>Intel XDK Display Plugin</description>
     <license>Apache 2.0</license>
