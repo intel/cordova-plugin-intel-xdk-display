@@ -56,6 +56,17 @@ and limitations under the License
         </js-module>
    </platform>
 
+    <!-- windows -->
+    <platform name="windows">
+        <config-file target="package.appxmanifest" parent="/Package/Capabilities">
+            <DeviceCapability Name="webcam" />
+        </config-file>
+
+        <js-module src="src/windows8/displayProxy.js" name="DisplayProxy">
+            <merges target="" />
+        </js-module>
+   </platform>
+
     <!-- android -->
     <platform name="android">
         <config-file target="res/xml/config.xml" parent="/*">
